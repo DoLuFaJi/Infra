@@ -3,6 +3,9 @@
 
 >`sudo apt install docker-compose`
 
+# Build all docker
+>`sudo docker-compose build`
+
 # Run all docker
 >`sudo docker-compose up`
 
@@ -10,4 +13,4 @@
 >`sudo docker-compose ps`
 
 # Get a bash in a container
->`sudo docker-compose run nom_service bash`
+>`sudo docker-compose exec nom_service bash`

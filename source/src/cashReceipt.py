@@ -50,7 +50,7 @@ def truncateFloat(r):
         return float(("%.2f"%(r)));
 def generateCashReceipt(cashReceiptid="1",storeid="1",terminalid="1",agentid="1",customerid="1",nblines=randint(1,5),timestamp=time()):
 	cashreceipt={
-                'cashReceiptID': cashReceiptid,
+        'cashReceiptID': cashReceiptid,
 		'storeID':storeid,
 		'terminalID':terminalid,
 		'agentID':agentid,

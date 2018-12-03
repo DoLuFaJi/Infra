@@ -4,7 +4,12 @@ services:
   source:
     build: "source/"
     volumes:
-      - ./source/:/code
+      - ./source/src/:/code
+
+  entry:
+    build: "entry/"
+    volumes:
+      - ./entry/src/:/code
 
   reception:
     image: "spotify/kafka"

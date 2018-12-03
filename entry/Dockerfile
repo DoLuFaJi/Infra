@@ -5,6 +5,6 @@ FROM python:3.7-slim
 WORKDIR /app
 COPY /src /app
 
-RUN pip install requests
+RUN pip install flask
 
 CMD ["python", "generator.py"]
