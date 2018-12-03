@@ -49,7 +49,7 @@ services:
   presentation:
     image: "frvi/dashing"
     ports:
-      - "85:8080"
+      - "8085:8080"
     environment:
       - PORT=8080
     volumes:
