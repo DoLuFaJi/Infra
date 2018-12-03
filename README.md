@@ -1,5 +1,6 @@
 # Install docker
 >`sudo apt install docker.io`
+
 >`sudo apt install docker-compose`
 
 # Run all docker
