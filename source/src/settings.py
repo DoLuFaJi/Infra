@@ -1,4 +1,4 @@
-ENTRYPOINT = "reception"
+ENTRYPOINT = "http://entry:5000/api/ticket"
 
 WAIT_TIME = 1
 

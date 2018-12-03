@@ -8,6 +8,8 @@ services:
 
   entry:
     build: "entry/"
+    ports:
+      - "8080:5000"
     volumes:
       - ./entry/src/:/code
 
@@ -21,7 +23,7 @@ services:
     expose:
       - "6123"
     ports:
-      - "8081:8081"
+      - "8082:8081"
     command: jobmanager
     environment:
       - JOB_MANAGER_RPC_ADDRESS=jobmanager

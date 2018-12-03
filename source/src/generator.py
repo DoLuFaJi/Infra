@@ -18,4 +18,5 @@ while True:
     time.sleep(WAIT_TIME)
     cashRec = generateCashReceipt(str(receiptId), str(storeId), str(terminalId), str(agentId), str(customerId))
     cashRec_json = json.dumps(cashRec)
-    print(cashRec_json)
+    res = requests.post(ENTRYPOINT, data=cashRec_json)
+    print(res)

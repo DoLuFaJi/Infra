@@ -7,4 +7,4 @@ COPY /src /app
 
 RUN pip install flask
 
-CMD ["python", "generator.py"]
+CMD ["python", "api.py"]
