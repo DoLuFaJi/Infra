@@ -45,3 +45,12 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: kk
     volumes:
       - ./historisation/:/code
+
+  presentation:
+    image: "frvi/dashing"
+    ports:
+      - "80:8080"
+    environment:
+      - PORT=8080
+    volumes:
+        - ./presentation:/code
