@@ -1,0 +1,47 @@
+version: '3'
+services:
+
+  source:
+    build: "source/"
+    volumes:
+      - ./source/:/code
+
+  reception:
+    image: "spotify/kafka"
+    volumes:
+      - ./reception/:/code
+
+  traitement_job:
+    image: "flink"
+    expose:
+      - "6123"
+    ports:
+      - "8081:8081"
+    command: jobmanager
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    volumes:
+      - ./traitement/:/code
+
+  traitement_task:
+    image: "flink"
+    expose:
+      - "6121"
+      - "6122"
+    depends_on:
+      - traitement_job
+    command: taskmanager
+    links:
+      - "traitement_job:jobmanager"
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    volumes:
+      - ./traitement/:/code
+
+  historisation:
+    image: "mongo"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: jiaye
+      MONGO_INITDB_ROOT_PASSWORD: kk
+    volumes:
+      - ./historisation/:/code
