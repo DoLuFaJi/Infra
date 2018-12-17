@@ -4,6 +4,12 @@ from flask import (
     jsonify,
     request
 )
+import json
+import datetime
+from time import time
+
+def fromTimeStampToDate(timestamp):
+	return datetime.datetime.fromtimestamp(int(timestamp)).strftime('%Y-%m-%d %H:%M:%S')
 
 # Create the application instance
 app = Flask(__name__, template_folder="templates")
@@ -22,8 +28,10 @@ def home():
 
 @app.route('/api/ticket', methods=['POST'])
 def add_ticket():
-    print('wesh recu')
-    return jsonify(request.json.data)
+    json_obj = json.loads(request.data.decode('utf-8'))
+    json_obj['entry_time'] = fromTimeStampToDate(time())
+    print(json_obj)
+    return jsonify(json_obj)
 
 # If we're running in stand alone mode, run the application
 if __name__ == '__main__':
