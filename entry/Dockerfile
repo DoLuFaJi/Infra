@@ -5,5 +5,6 @@ FROM python:3.7-slim
 WORKDIR /code
 
 RUN pip install flask
+RUN pip install kafka-python
 
 CMD ["python", "api.py"]

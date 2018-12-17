@@ -7,6 +7,9 @@ from flask import (
 import json
 import datetime
 from time import time
+from kafka import KafkaProducer
+
+PRODUCE_KAFKA = True
 
 def fromTimeStampToDate(timestamp):
 	return datetime.datetime.fromtimestamp(int(timestamp)).strftime('%Y-%m-%d %H:%M:%S')
@@ -30,8 +33,10 @@ def home():
 def add_ticket():
     json_obj = json.loads(request.data.decode('utf-8'))
     json_obj['entry_time'] = fromTimeStampToDate(time())
-    print(json_obj)
-    return jsonify(json_obj)
+    if PRODUCE_KAFKA:
+        producer = KafkaProducer(bootstrap_servers='reception:9092')
+        producer.send('msg_in', json.dumps(json_obj))
+    return jsonify({'status':'sucess'})
 
 # If we're running in stand alone mode, run the application
 if __name__ == '__main__':
