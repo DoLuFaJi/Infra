@@ -14,15 +14,20 @@ services:
       - ./entry/src/:/code
 
   reception:
-    image: "spotify/kafka"
+    build: "reception/"
+    expose:
+      - "9092"
+      - "2181"
     ports:
-      - "2181:2181"
-      - "9092:9092"
-    environment:
-      - ADVERTISED_HOST=172.17.0.1
-      - ADVERTISED_PORT=9092
+      - "9092"
+      - "2181"
     volumes:
       - ./reception/:/code
+
+  pc:
+    build: "./producers-consumers"
+    volumes:
+      - ./producers-consumers:/code
 
   traitement_job:
     image: "flink"

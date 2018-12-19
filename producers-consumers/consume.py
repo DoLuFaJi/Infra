@@ -1,6 +1,4 @@
 from kafka import KafkaConsumer
-consumer = KafkaConsumer('foobar', bootstrap_servers='172.17.0.1:9092')
+consumer = KafkaConsumer('foobar', bootstrap_servers='reception:9092', auto_offset_reset='smallest')
 for msg in consumer:
-	print msg
-
-
+	print(msg)
