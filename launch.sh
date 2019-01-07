@@ -1,4 +1,4 @@
 #! /bin/bash
-docker-compose up --force-recreate reception
-docker-compose up entry
-docker-compose up source
+docker-compose up --force-recreate -d reception
+docker-compose up -d entry
+docker-compose up -d source
