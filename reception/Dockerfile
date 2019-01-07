@@ -1,5 +1,5 @@
 FROM openjdk
 
-VOLUME ["/code"]
+COPY . /code
 
 CMD ["/code/start.sh"]

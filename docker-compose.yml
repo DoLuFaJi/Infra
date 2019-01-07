@@ -21,8 +21,6 @@ services:
     ports:
       - "9092"
       - "2181"
-    volumes:
-      - ./reception/:/code
 
   pc:
     build: "./producers-consumers"
