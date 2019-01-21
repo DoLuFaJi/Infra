@@ -63,11 +63,14 @@ services:
       - ./historisation/:/code
 
   presentation:
-    image: "frvi/dashing"
-    ports:
-      - "8085:8080"
+    build: "presentation/"
     environment:
-      - PORT=8080
-      - GEMS=ruby-kafka
+      FLASK_APP: app.py
+    expose:
+      - "8080"
+      - "5000"
+    ports:
+      - "8080:5000"
     volumes:
-        - ./presentation/jobs:/jobs
+      - ./presentation/src:/code
+
