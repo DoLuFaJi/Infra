@@ -8,10 +8,7 @@ COPY /src /code
 RUN pip install flask
 RUN pip install pusher
 
-RUN apt-get update
-RUN apt-get install net-tools
+EXPOSE 5000
+ENV FLASK_APP app.py
 
-
-
-
-CMD ["flask", "run"]
+ENTRYPOINT ["python", "-m", "flask", "run", "--host=0.0.0.0"]
