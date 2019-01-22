@@ -66,11 +66,8 @@ services:
     build: "presentation/"
     environment:
       FLASK_APP: app.py
-    expose:
-      - "8080"
-      - "5000"
     ports:
-      - "8080:5000"
+      - "8081:5000"
     volumes:
       - ./presentation/src:/code
 

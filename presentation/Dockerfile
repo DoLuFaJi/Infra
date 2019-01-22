@@ -6,7 +6,9 @@ WORKDIR /code
 COPY /src /code
 
 RUN pip install flask
+RUN pip install kafka-python
 RUN pip install pusher
+RUN pip install requests
 
 EXPOSE 5000
 ENV FLASK_APP app.py
