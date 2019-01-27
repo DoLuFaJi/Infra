@@ -12,7 +12,7 @@ html {
   }
   
   body.sticky-footer .content-wrapper {
-    min-height: calc(100vh - 56px - 56px);
+    min-height: calc(100% - 0px - 0px);
   }
   
   body.fixed-nav {
@@ -20,7 +20,7 @@ html {
   }
   
   .content-wrapper {
-    min-height: calc(100vh - 56px);
+    min-height: calc(100% - 0px);
     padding-top: 1rem;
   }
   

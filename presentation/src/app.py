@@ -8,27 +8,35 @@ from kafka import KafkaProducer, KafkaConsumer
 from settings import ENTRYPOINT, MY_TOPIC
 
 
+app = Flask(__name__)
+pusher = Pusher(app_id=u'695721', key=u'ca74e69b1d763f09e09b', secret=u'ad6425c1e00b57d69dee', cluster=u'eu')
+verrou = threading.RLock()
+
+
 class Consume(threading.Thread):
 	def __init__(self, my_topic):
 		threading.Thread.__init__(self)
 		self.topic = my_topic
-		self._stop_event = threading.Event()
+		self._is_running = True
+		#self._stop_event = threading.Event()
 
 	def run(self):
-		consumer_in = KafkaConsumer(self.topic, bootstrap_servers='reception:9092', auto_offset_reset='smallest')
-		for msg in consumer_in:
-			res = requests.post(ENTRYPOINT, data=msg.value.decode('utf-8'))
+		self.consumer_in = KafkaConsumer(self.topic, bootstrap_servers='reception:9092', auto_offset_reset='smallest')
+		for msg in self.consumer_in:
+			with verrou:
+				if not self._is_running:
+					return None
+				res = requests.post(ENTRYPOINT, data=msg.value.decode('utf-8'))
 
 	def stop(self):
-		self._stop_event.set()
+		self.consumer_in.close()
+		self._is_running = False
+		#self._stop_event.set()
 
 	def stopped(self):
-		self._stop_event.is_set()
+		pass
+		#self._stop_event.is_set()
 
-
-consume = Consume(MY_TOPIC)
-app = Flask(__name__)
-pusher = Pusher(app_id=u'695721', key=u'ca74e69b1d763f09e09b', secret=u'ad6425c1e00b57d69dee', cluster=u'eu')
 
 
 @app.route('/')
@@ -41,6 +49,8 @@ def dashboard():
 
 @app.route('/consume', methods=['POST'])
 def demo():
+	global consume
+	consume = Consume(MY_TOPIC)
 	consume.start()
 	return render_template('dashboard.html')
 
@@ -55,9 +65,10 @@ def message():
 	return render_template('dashboard.html')
 
 
-@app.route('/kill')
+@app.route('/stop', methods=['POST'])
 def stop_to_consume():
-	consume.stop()
+	with verrou:
+		consume.stop()
 	consume.join()
 	return render_template('dashboard.html')
 

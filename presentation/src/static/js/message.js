@@ -29,6 +29,6 @@ $(document).ready(function () {
                       `<div class="text-muted smaller">Today at ${date.getHours()} : ${date.getMinutes()}</div>`+
                     '</div>'+
                   '</div>'
-    message.innerText = parseInt(message.innerText)+1
+    message.innerText = parseInt(data.message)+1
   });
 });
