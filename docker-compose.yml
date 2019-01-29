@@ -55,7 +55,7 @@ services:
       - ./traitement/:/code
 
   historisation:
-    image: "mongo"
+    build: "historisation/"
     environment:
       MONGO_INITDB_ROOT_USERNAME: jiaye
       MONGO_INITDB_ROOT_PASSWORD: kk
@@ -63,11 +63,11 @@ services:
       - ./historisation/:/code
 
   presentation:
-    image: "frvi/dashing"
-    ports:
-      - "8085:8080"
+    build: "presentation/"
     environment:
-      - PORT=8080
-      - GEMS=ruby-kafka
+      FLASK_APP: app.py
+    ports:
+      - "8081:5000"
     volumes:
-        - ./presentation/jobs:/jobs
+      - ./presentation/src:/code
+

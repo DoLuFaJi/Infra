@@ -4,3 +4,4 @@ docker-compose up -d entry
 docker-compose up -d source
 docker-compose up -d historisation
 docker-compose up -d traitement_task
+docker-compose up -d presentation
