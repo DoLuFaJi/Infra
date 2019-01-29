@@ -48,7 +48,7 @@ def fromTimeStampToDate(timestamp):
 
 def truncateFloat(r):
         return float(("%.2f"%(r)));
-def generateCashReceipt(cashReceiptid="1",storeid="1",terminalid="1",agentid="1",customerid="1",nblines=randint(1,5),timestamp=time()):
+def generateCashReceipt(cashReceiptid="1",storeid="60",terminalid="1",agentid="1",customerid="1",nblines=randint(1,5),timestamp=time()):
 	cashreceipt={
         'cashReceiptID': cashReceiptid,
 		'storeID':storeid,
@@ -114,5 +114,5 @@ def writeJSON(jsonObject,destination) : ##+'\\'+'overallStatistiques.json'
         json.dump(jsonObject, outfile, indent=4)
 
 
-cashRec=generateCashReceipt('1','1','1','1','1')
+cashRec=generateCashReceipt('1','80','1','1','1')
 writeJSON(cashRec,'cashreceipt.json')

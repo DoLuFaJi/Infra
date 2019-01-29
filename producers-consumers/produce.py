@@ -4,7 +4,10 @@ producer = KafkaProducer(bootstrap_servers='reception:9092')
 for _ in range(100):
 	future = producer.send('foobar', 'biite'.encode('utf8'))
 	result = future.get(timeout=60)
+	print("producer")
 	print(result)
+	print("end producer")
+
 
 metrics = producer.metrics()
-print(metrics)
+#print(metrics)

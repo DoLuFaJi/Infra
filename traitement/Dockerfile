@@ -1,1 +1,4 @@
-CMD ["/opt/flink/bin/start-cluster.sh"]
+# Setup working dir
+WORKDIR /code
+
+CMD ["/code/start.sh"]
