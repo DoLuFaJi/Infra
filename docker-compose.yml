@@ -55,7 +55,7 @@ services:
       - ./traitement/:/code
 
   historisation:
-    image: "mongo"
+    build: "historisation/"
     environment:
       MONGO_INITDB_ROOT_USERNAME: jiaye
       MONGO_INITDB_ROOT_PASSWORD: kk
