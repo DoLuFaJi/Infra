@@ -1,3 +1,5 @@
 cashreceipt.json
 *.pyc
 *.class
+reception/kafka_2.11-2.1.0.tgz
+reception/kafka_2.11-2.1.0
