@@ -1,13 +1,3 @@
-/*Pusher.logToConsole = true;
-
-// Configure Pusher instance
-var pusher = new Pusher('4adcbc6f4cdd9aed0a57', {
-  cluster: 'eu',
-  encrypted: true
-});*/
-
-
-
 $(document).ready(function(){
 	var dataTable = $("#dataTable").DataTable()
 	var customerChannel = pusher.subscribe('customer');
