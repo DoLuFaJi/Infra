@@ -38,11 +38,12 @@ var myLineChart = new Chart(ctx, {
 Pusher.logToConsole = true;
 
 // Configure Pusher instance
-var pusher = new Pusher('ca74e69b1d763f09e09b', {
+var pusher = new Pusher('4adcbc6f4cdd9aed0a57', {
   cluster: 'eu',
   encrypted: true
 });
 
+/*
 // Subscribe to poll trigger
 var orderChannel = pusher.subscribe('order');
 
@@ -54,4 +55,4 @@ orderChannel.bind('place', function(data) {
   });
   myLineChart.update();
   order.innerText = parseInt(order.innerText)+1
-});
+});*/

@@ -1,3 +1,4 @@
+import ast
 import json
 import requests
 import threading
@@ -9,7 +10,7 @@ from settings import ENTRYPOINT, MY_TOPIC
 
 
 app = Flask(__name__)
-pusher = Pusher(app_id=u'695721', key=u'ca74e69b1d763f09e09b', secret=u'ad6425c1e00b57d69dee', cluster=u'eu')
+pusher = Pusher(app_id=u'703310', key=u'4adcbc6f4cdd9aed0a57', secret=u'83853fb9750d891163bb', cluster=u'eu')
 verrou = threading.RLock()
 
 
@@ -18,7 +19,6 @@ class Consume(threading.Thread):
 		threading.Thread.__init__(self)
 		self.topic = my_topic
 		self._is_running = True
-		#self._stop_event = threading.Event()
 
 	def run(self):
 		self.consumer_in = KafkaConsumer(self.topic, bootstrap_servers='reception:9092', auto_offset_reset='smallest')
@@ -31,11 +31,9 @@ class Consume(threading.Thread):
 	def stop(self):
 		self.consumer_in.close()
 		self._is_running = False
-		#self._stop_event.set()
 
 	def stopped(self):
 		pass
-		#self._stop_event.is_set()
 
 
 
@@ -57,10 +55,11 @@ def demo():
 
 @app.route('/message', methods=['POST'])
 def message():
-	data = json.loads(request.data.decode('utf-8'))
-	pusher.trigger(u'message', u'send', {
-		u'name': str(data['cashReceiptID']),
-		u'message': str(data['customerID'])
+	data = ast.literal_eval(request.data.decode('utf-8'))
+	pusher.trigger(u'customer', u'add', {
+		u'store_id': data[0],
+		u'type_payment': data[1],
+		u'nb_transactions': data[2],
 	})
 	return render_template('dashboard.html')
 

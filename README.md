@@ -4,10 +4,16 @@
 
 ## Install docker
 >`sudo apt install docker.io`
+
 >`sudo apt install docker-compose`
 
 # Run the application
 >`sudo ./launch.sh`
+
+>`docker-compose exec traitement_task bash`
+
+>`bin/flink run -c tr.MainTraitement /code/traitement-1.0-SNAPSHOT.jar`
+
 Open your application on `http://localhost:8081/`
 
 # Commands to run dockers
