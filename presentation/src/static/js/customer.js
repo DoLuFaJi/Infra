@@ -17,7 +17,7 @@ $(document).ready(function(){
 	    data.store_id,
 	    data.nb_transactions,
 	    data.type_payment,
-	    `${date.getHours()}/${date.getMinutes()}/${date.getSeconds()}`
+	    `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 	  ]).draw( false );
 	});
 });

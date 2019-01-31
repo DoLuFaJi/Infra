@@ -3,6 +3,7 @@
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
 // -- Bar Chart Example
+/**
 var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
   type: 'bar',
@@ -33,7 +34,7 @@ var myLineChart = new Chart(ctx, {
       display: false
     }
   }
-});
+});**/
 
 Pusher.logToConsole = true;
 
