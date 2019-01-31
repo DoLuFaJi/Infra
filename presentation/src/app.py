@@ -71,28 +71,5 @@ def stop_to_consume():
 	consume.join()
 	return render_template('dashboard.html')
 
-
-""" TO DELETE SOON
-@app.route('/orders', methods=['POST'])
-def order():
-	data = request.form
-	pusher.trigger(u'order', u'place', {
-		u'units': data['units']
-	})
-	return "units logged"
-
-@app.route('/customer', methods=['POST'])
-def customer():
-	data = request.form
-	pusher.trigger(u'customer', u'add', {
-		u'name': data['name'],
-		u'position': data['position'],
-		u'office': data['office'],
-		u'age': data['age'],
-		u'salary': data['salary'],
-	})
-	return "customer added"
-"""
-
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0')
